@@ -6,14 +6,7 @@ public class StartLevel : MonoBehaviour
 {
     [SerializeField] private GameObject _prefabProjectile;
     [SerializeField] private GameManager _gameManager;
-
-    private Camera _camera;
-
-    private void Awake()
-    {
-        _camera = Camera.main;
-    }
-
+       
     private void Start()
     {
         CreateProjectile();
@@ -23,6 +16,9 @@ public class StartLevel : MonoBehaviour
     {
         GameObject projectile =  Instantiate(_prefabProjectile);
         projectile.transform.position = transform.position;
-        projectile.GetComponent<Projectile>().Init(_camera, _gameManager);
+        _gameManager.GetCameraMovement().SetTarget(projectile.transform);
+        projectile.GetComponent<Projectile>().Init(_gameManager);
+        projectile.GetComponent<ProjectileFlight>().FinishFlight += _gameManager.IncreaseNumberProjectilePulling;
+        projectile.GetComponent<ProjectileFlight>().FinishFlight += _gameManager.GetCameraMovement().ReturnPosition;
     }
 }

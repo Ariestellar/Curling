@@ -1115,6 +1115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startLevel: {fileID: 2004348496}
+  _mainCamera: {fileID: 963194227}
   numberProjectilePulling: 0
 --- !u!1 &1443401791
 GameObject:
