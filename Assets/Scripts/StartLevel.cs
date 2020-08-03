@@ -6,6 +6,8 @@ public class StartLevel : MonoBehaviour
 {
     [SerializeField] private GameObject _prefabProjectile;
     [SerializeField] private GameManager _gameManager;
+    [SerializeField] private Transform _positionStartProjectile;
+    private Projectile[] _currentProjectile;
        
     private void Start()
     {
@@ -16,8 +18,8 @@ public class StartLevel : MonoBehaviour
     {
         if (_gameManager.NumberProjectilePulling != 4)
         {
-            GameObject projectile = Instantiate(_prefabProjectile);
-            projectile.transform.position = transform.position;
+            GameObject projectile = Instantiate(_prefabProjectile, this.transform);
+            projectile.transform.position = _positionStartProjectile.position;
 
             _gameManager.GetCameraMovement().SetTarget(projectile.transform);//При создании снаряда подменям таргет слежения у камеры
             projectile.GetComponent<Projectile>().Init(_gameManager);
@@ -29,8 +31,18 @@ public class StartLevel : MonoBehaviour
         }
         else
         {
-            Debug.Log("Конец игры");
+            _gameManager.Defeat();
+        }        
+    }
+
+    public void ResetLevel()
+    {
+        _gameManager.ResetData();
+        _currentProjectile = GetComponentsInChildren<Projectile>();
+        foreach (var projectile in _currentProjectile)
+        {
+            Destroy(projectile.gameObject);
         }
-        
+        CreateProjectile();
     }
 }

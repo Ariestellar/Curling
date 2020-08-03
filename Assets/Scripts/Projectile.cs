@@ -13,7 +13,7 @@ public class Projectile : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDr
     private CameraMovement _cameraMovement;
     private Camera _camera;
     private Rigidbody _rigidbody;    
-    private int _pullingForce;    
+    [SerializeField] private int _pullingForce;    
     private GameManager _gameManager;
     private ProjectileFlight _projectileMovement;
 
@@ -58,10 +58,9 @@ public class Projectile : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDr
 
     public void OnDrag(PointerEventData eventData)
     {
-        //Создаем объект из позиции снаряда 
-        
+        //Создаем объект из позиции снаряда         
         Vector3 endPositionMouse = _camera.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y, 10));
-        _pullingForce = (int)Vector3.Distance(_startPositionMouse, endPositionMouse);
+        _pullingForce = Mathf.Clamp((int)Vector3.Distance(_startPositionMouse, endPositionMouse), 0, 5);
 
         _indicators.ForceIndicator.SetColorArrow(_pullingForce);
 

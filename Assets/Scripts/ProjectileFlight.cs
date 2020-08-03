@@ -10,6 +10,8 @@ public class ProjectileFlight : MonoBehaviour
     private bool _isFlight;
     private float _previousPosition;
 
+    public bool IsFlight => _isFlight;
+
     public Action FinishFlight { get => _finishFlight; set => _finishFlight = value; }
 
     private void FixedUpdate()
@@ -21,9 +23,10 @@ public class ProjectileFlight : MonoBehaviour
             {
                 FinishFlight?.Invoke();
 
-                _isFlight = false;                
-                this.enabled = false;//выключаем этот класс за ненадобностью 
+                _isFlight = false;
                 
+                this.enabled = false;//выключаем этот класс за ненадобностью 
+
             }
             _previousPosition = transform.position.z;
         }
@@ -32,12 +35,7 @@ public class ProjectileFlight : MonoBehaviour
     public void SetStateFlight(bool isFlight)
     {
         _isFlight = isFlight;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Снаряд попал");
-    }
+    }   
 
     private void OnDisable()
     {
