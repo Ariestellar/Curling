@@ -14,7 +14,7 @@ public class CameraMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_isMovementForProjectile)
+        if (_isMovementForProjectile && _target != null)
         {
             transform.position = Vector3.Lerp(transform.position, _target.position + _offset, Time.deltaTime * _smooth);
         }

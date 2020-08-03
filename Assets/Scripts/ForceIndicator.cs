@@ -22,10 +22,10 @@ public class ForceIndicator : MonoBehaviour
     }
 
     public void SetColorArrow(int pullingForce)
-    {
+    {        
         for (int i = 0; i < _arrowSprites.Length; i++)
         {
-            if (pullingForce >= i)
+            if (pullingForce > i)
             {
                 _arrowSprites[i].color = Color.red;
             }

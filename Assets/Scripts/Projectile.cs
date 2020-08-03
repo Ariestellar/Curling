@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+[RequireComponent(typeof(ProjectileFlight))]
 [RequireComponent(typeof(Rigidbody))]
 public class Projectile : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
 {
@@ -11,41 +12,22 @@ public class Projectile : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDr
     private Vector3 _startPositionMouse;
     private CameraMovement _cameraMovement;
     private Camera _camera;
-    private Rigidbody _rigidbody;
-    private bool _isMissileflight;
-    private int _pullingForce;
-    private float _previousPosition;
+    private Rigidbody _rigidbody;    
+    [SerializeField] private int _pullingForce;    
     private GameManager _gameManager;
+    private ProjectileFlight _projectileMovement;
 
     private void Awake()
     {        
-        _rigidbody = GetComponent<Rigidbody>();        
+        _rigidbody = GetComponent<Rigidbody>();
+        _projectileMovement = GetComponent<ProjectileFlight>();
     }
 
-    private void FixedUpdate()
+    public void Init(GameManager gameManager)
     {
-        //Проверям остановку снаряда после запуска
-        if (_isMissileflight)
-        {   
-            if (transform.position.z == _previousPosition)
-            {                
-                _isMissileflight = false;
-                _cameraMovement.ReturnPosition();//возвращаем камеру на место
-                this.enabled = false;//выключаем этот класс за ненадобностью 
-                _gameManager.IncreaseNumberProjectilePulling();
-            }
-            _previousPosition = transform.position.z;
-        }
-    }
-
-    public void Init(Camera camera, GameManager gameManager)
-    {
-        _gameManager = gameManager;
-        //Кешируем ссылку на камеру и класс ее движения для снаряда
-        _camera = camera;
-        _cameraMovement = _camera.GetComponent<CameraMovement>();
-        //Устанавливаем ссылку на снаряд для дальнейшего использования позже        
-        _cameraMovement.SetTarget(transform);
+        _gameManager = gameManager;        
+        _camera = gameManager.GetMainCamera();
+        _cameraMovement = gameManager.GetCameraMovement();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -66,17 +48,19 @@ public class Projectile : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDr
         {
             _rigidbody.AddForce(transform.forward * _pullingForce * 500);
             //Снаряд запущенн, состояние для проверки окончания его полета
-            _isMissileflight = true;
+            _projectileMovement.SetStateFlight(true);
             //включаем скрипт слежения камеры что бы проследила за снарядом во время полета
             _cameraMovement.ForProjectile();
+            //Выключаем этот скрипт тк больше не нужен
+            this.enabled = false;
         }      
     }
 
     public void OnDrag(PointerEventData eventData)
-    {        
-        //Создаем объект из позиции снаряда 
+    {
+        //Создаем объект из позиции снаряда         
         Vector3 endPositionMouse = _camera.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y, 10));
-        _pullingForce = (int)Vector3.Distance(_startPositionMouse, endPositionMouse);
+        _pullingForce = Mathf.Clamp((int)Vector3.Distance(_startPositionMouse, endPositionMouse), 0, 5);
 
         _indicators.ForceIndicator.SetColorArrow(_pullingForce);
 
@@ -84,10 +68,5 @@ public class Projectile : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDr
         var distance = heading.magnitude;        
         var _direction = heading / distance;
         transform.forward = _direction;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Снаряд попал");
     }
 }
