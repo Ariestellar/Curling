@@ -28,9 +28,6 @@ public class Projectile : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDr
         _gameManager = gameManager;        
         _camera = gameManager.GetMainCamera();
         _cameraMovement = gameManager.GetCameraMovement();
-
-        //Устанавливаем ссылку на снаряд для дальнейшего использования позже        
-        //_cameraMovement.SetTarget(transform);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -60,8 +57,9 @@ public class Projectile : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDr
     }
 
     public void OnDrag(PointerEventData eventData)
-    {        
+    {
         //Создаем объект из позиции снаряда 
+        
         Vector3 endPositionMouse = _camera.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y, 10));
         _pullingForce = (int)Vector3.Distance(_startPositionMouse, endPositionMouse);
 

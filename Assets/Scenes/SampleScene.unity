@@ -591,7 +591,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654509164}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a463fb1ef1bbeb94888e9ab422ec72fa, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -894,7 +894,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1303525808}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a463fb1ef1bbeb94888e9ab422ec72fa, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1114,7 +1114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac91e7a1501911240a51ac669f65b50e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startLevel: {fileID: 2004348496}
   _mainCamera: {fileID: 963194227}
   numberProjectilePulling: 0
 --- !u!1 &1443401791
@@ -1143,7 +1142,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1443401791}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a463fb1ef1bbeb94888e9ab422ec72fa, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

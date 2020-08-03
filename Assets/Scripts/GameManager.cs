@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameManager: MonoBehaviour
 {
-    [SerializeField] private StartLevel _startLevel;
     [SerializeField] private Camera _mainCamera;
     [SerializeField] private int numberProjectilePulling;
 
@@ -17,8 +16,7 @@ public class GameManager: MonoBehaviour
 
     public void IncreaseNumberProjectilePulling()
     {
-        numberProjectilePulling += 1;
-        _startLevel.CreateProjectile();
+        numberProjectilePulling += 1;        
     }
 
     public CameraMovement GetCameraMovement()
