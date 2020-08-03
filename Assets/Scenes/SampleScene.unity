@@ -656,6 +656,7 @@ MonoBehaviour:
   _lifePanel: {fileID: 101712753}
   _ratingPanel: {fileID: 1352268421}
   _resultPanel: {fileID: 495968031}
+  _levelText: {fileID: 552668920}
 --- !u!1 &551141292
 GameObject:
   m_ObjectHideFlags: 0
@@ -2051,7 +2052,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prefabProjectile: {fileID: 2406474460962408804, guid: dec5c8933a4788a44aa4d03fd0f14cb1,
     type: 3}
-  _gameManager: {fileID: 1399223921}
   _positionStartProjectile: {fileID: 2004348495}
 --- !u!1 &1443401791
 GameObject:
@@ -2229,7 +2229,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1399223922}
-        m_MethodName: ResetLevel
+        m_MethodName: ContinueLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

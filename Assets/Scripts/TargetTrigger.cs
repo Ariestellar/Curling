@@ -7,7 +7,7 @@ public class TargetTrigger : MonoBehaviour
     [SerializeField] private GameManager _gameManager;
     private void OnTriggerEnter(Collider other)
     {
-        _gameManager.IncreaseNumberProjectileAtTarget();                
+        _gameManager.IncreaseNumberProjectileAtTarget();               
     }
 
     private void OnTriggerExit(Collider other)

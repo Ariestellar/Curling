@@ -7,7 +7,8 @@ public class UIPanel : MonoBehaviour
 {
     [SerializeField] private GameObject _lifePanel;
     [SerializeField] private GameObject _ratingPanel;
-    [SerializeField] private GameObject _resultPanel;
+    [SerializeField] private GameObject _resultPanel; 
+    [SerializeField] private Text _levelText; 
 
     private Text _resultText;
     private Image[] _lifeImages;
@@ -20,9 +21,9 @@ public class UIPanel : MonoBehaviour
         _resultText = _resultPanel.GetComponentInChildren<Text>();
     }
 
-    public void SetColorLifePanel(int countLife)
+    public void SetColorLifePanel(int countLife)//Отрефакторить решение в лоб
     {
-        for (int i = 0; i < _lifeImages.Length; i++)
+        for (int i = 1; i < _lifeImages.Length; i++)
         {
             if (countLife >= i)
             {
@@ -35,7 +36,7 @@ public class UIPanel : MonoBehaviour
         }
     }
 
-    public void SetColorRatingPanel(int countRating)
+    public void SetColorRatingPanel(int countRating)//Отрефакторить решение в лоб
     {
         for (int i = 1; i < _ratingImages.Length; i++)
         {
@@ -59,5 +60,10 @@ public class UIPanel : MonoBehaviour
     public void HideResultPanel()
     {
         _resultPanel.SetActive(false);
+    }
+
+    public void UpdateTextLevel(int currentLevel)
+    {
+        _levelText.text = currentLevel + " level";
     }
 }
