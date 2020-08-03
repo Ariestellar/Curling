@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum StateGame
 {
@@ -14,6 +15,7 @@ public class GameManager: MonoBehaviour
     [SerializeField] private UIPanel _uiPanel;
 
     private StateGame _stateGame;    
+    private CanvasScaler _canvasScaler;    
     private int _numberProjectilePulling;
     private int _numberProjectileAtTarget;
     private CameraMovement _mainCameraMovement;
@@ -22,8 +24,24 @@ public class GameManager: MonoBehaviour
     public int NumberProjectilePulling => _numberProjectilePulling;    
 
     private void Awake()
-    {        
+    {
+        _canvasScaler = _uiPanel.GetComponent<CanvasScaler>();
         _mainCameraMovement = _mainCamera.GetComponent<CameraMovement>();        
+    }
+    void Start()
+    {
+        if (Screen.width <= 480)
+        {
+            _canvasScaler.scaleFactor = 1;
+        } 
+        else if (Screen.width <= 750)
+        {
+            _canvasScaler.scaleFactor = 2;
+        }
+        else if (Screen.width <= 1080)
+        {
+            _canvasScaler.scaleFactor = 3;
+        }
     }
 
     public void IncreaseNumberProjectilePulling()
