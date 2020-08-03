@@ -14,15 +14,23 @@ public class StartLevel : MonoBehaviour
 
     public void CreateProjectile()
     {
-        GameObject projectile =  Instantiate(_prefabProjectile);
-        projectile.transform.position = transform.position;
+        if (_gameManager.NumberProjectilePulling != 4)
+        {
+            GameObject projectile = Instantiate(_prefabProjectile);
+            projectile.transform.position = transform.position;
 
-        _gameManager.GetCameraMovement().SetTarget(projectile.transform);//При создании снаряда подменям таргет слежения у камеры
-        projectile.GetComponent<Projectile>().Init(_gameManager);
-        ProjectileFlight projectileFlight = projectile.GetComponent<ProjectileFlight>();
+            _gameManager.GetCameraMovement().SetTarget(projectile.transform);//При создании снаряда подменям таргет слежения у камеры
+            projectile.GetComponent<Projectile>().Init(_gameManager);
+            ProjectileFlight projectileFlight = projectile.GetComponent<ProjectileFlight>();
 
-        projectileFlight.FinishFlight += _gameManager.IncreaseNumberProjectilePulling;
-        projectileFlight.FinishFlight += _gameManager.GetCameraMovement().ReturnPosition;        
-        projectileFlight.FinishFlight += CreateProjectile;
+            projectileFlight.FinishFlight += _gameManager.IncreaseNumberProjectilePulling;
+            projectileFlight.FinishFlight += _gameManager.GetCameraMovement().ReturnPosition;
+            projectileFlight.FinishFlight += CreateProjectile;
+        }
+        else
+        {
+            Debug.Log("Конец игры");
+        }
+        
     }
 }
