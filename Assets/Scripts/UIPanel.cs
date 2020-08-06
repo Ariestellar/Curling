@@ -27,11 +27,11 @@ public class UIPanel : MonoBehaviour
         {
             if (countLife >= i)
             {
-                _lifeImages[i].color = Color.white;
+                _lifeImages[i].color = Color.red;
             }
             else 
             {
-                _lifeImages[i].color = Color.red;
+                _lifeImages[i].color = Color.green;
             }
         }
     }
