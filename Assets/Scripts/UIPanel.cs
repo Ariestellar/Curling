@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIPanel : MonoBehaviour
@@ -9,6 +10,11 @@ public class UIPanel : MonoBehaviour
     [SerializeField] private GameObject _ratingPanel;
     [SerializeField] private GameObject _resultPanel; 
     [SerializeField] private Text _levelText; 
+    //Отделить
+    [SerializeField] private Image _imageResultPanel; 
+
+    [SerializeField] private Sprite _imageDefeat; 
+    [SerializeField] private Sprite _imageVictory; 
 
     private Text _resultText;
     private Image[] _lifeImages;
@@ -31,7 +37,7 @@ public class UIPanel : MonoBehaviour
             }
             else 
             {
-                _lifeImages[i].color = Color.green;
+                _lifeImages[i].color = Color.white;
             }
         }
     }
@@ -51,9 +57,26 @@ public class UIPanel : MonoBehaviour
         }
     }
 
-    public void ShowResultPanel(string result)
+    public void ShowResultPanel(StateGame stateGame)
     {
-        _resultText.text = result;
+        if (SceneManager.sceneCountInBuildSettings > DataGame.currentLevel)
+        {
+            if (stateGame == StateGame.Victory)
+            {
+                _imageResultPanel.sprite = _imageVictory;
+                _resultText.text = "Victory";
+            }
+            else if (stateGame == StateGame.Defeat)
+            {
+                _imageResultPanel.sprite = _imageDefeat;
+                _resultText.text = "Defeat";
+            }            
+        }
+        else 
+        {
+            _resultText.text = "End demo :(";
+        }           
+
         _resultPanel.SetActive(true);
     }
 

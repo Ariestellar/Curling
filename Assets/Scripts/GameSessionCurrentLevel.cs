@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public enum StateGame
 {
     Victory,
-    Defeat
+    Defeat,
+    EndDemo
 }
 [RequireComponent(typeof(Spawner))]
 public class GameSessionCurrentLevel: MonoBehaviour
@@ -67,19 +68,10 @@ public class GameSessionCurrentLevel: MonoBehaviour
 
     public void ContinueLevel()
     {
-        if (StateLevel == StateGame.Victory)
+        if (StateLevel == StateGame.Victory && SceneManager.sceneCountInBuildSettings > DataGame.currentLevel)
         {
             DataGame.LevelUp();
-            if (SceneManager.sceneCountInBuildSettings >= DataGame.currentLevel)
-            {
-                SceneManager.LoadScene("Level_" + DataGame.currentLevel);
-            }
-            else 
-            {
-                Debug.Log("Демо закончилось");
-                ResetLevel();
-            }
-            
+            SceneManager.LoadScene("Level_" + DataGame.currentLevel);            
         }
         else
         {
@@ -115,16 +107,16 @@ public class GameSessionCurrentLevel: MonoBehaviour
         return _mainCamera;
     }
 
-    public void Defeat()
+    private void Defeat()
     {
         _stateGame = StateGame.Defeat;
-        _uiPanel.ShowResultPanel("Defeat");
+        _uiPanel.ShowResultPanel(_stateGame);
     }
 
-    public void Victory()
+    private void Victory()
     {
         _stateGame = StateGame.Victory;
-        _uiPanel.ShowResultPanel("Victory");
+        _uiPanel.ShowResultPanel(_stateGame);
     }
 
     public void  CheckVictory()

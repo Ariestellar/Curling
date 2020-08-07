@@ -43,7 +43,7 @@ public class Projectile : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDr
         //если сила запуска не равна нулю тогда применяем ее к снаряду умножая на 500 
         if (_pullingForce != 0)
         {
-            _rigidbody.AddForce(transform.forward * _pullingForce * 300);
+            _rigidbody.AddForce(transform.forward * _pullingForce * 450);
             //Снаряд запущенн, состояние для проверки окончания его полета
             _projectileMovement.SetStateFlight(true);
             //включаем скрипт слежения камеры что бы проследила за снарядом во время полета
