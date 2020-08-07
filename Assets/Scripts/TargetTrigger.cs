@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TargetTrigger : MonoBehaviour
 {
-    [SerializeField] private GameManager _gameManager;
+    [SerializeField] private GameSessionCurrentLevel _gameManager;
     private void OnTriggerEnter(Collider other)
     {
         _gameManager.IncreaseNumberProjectileAtTarget();               

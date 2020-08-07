@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private Transform _target;
     [SerializeField] private Transform _startPosition;
     [SerializeField] private bool _isReturnToPosition;
-    [SerializeField] private bool _isMovementForProjectile;    
+    [SerializeField] private bool _isMovementForProjectile;
 
     private float _smooth = 5.0f;
     private Vector3 _offset = new Vector3(0, 15, -10);
@@ -24,7 +25,7 @@ public class CameraMovement : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, _startPosition.position, Time.deltaTime * _smooth);
             if (Vector3.Distance(transform.position, _startPosition.position) <= 0.1)
             {
-                _isReturnToPosition = false;
+                _isReturnToPosition = false;                
             }
         }
     }

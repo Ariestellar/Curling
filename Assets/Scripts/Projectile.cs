@@ -7,14 +7,13 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(Rigidbody))]
 public class Projectile : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
 {
-    [SerializeField] private Indicators _indicators;    
-    
+    [SerializeField] private Indicators _indicators;
+    [SerializeField] private int _pullingForce;
+
     private Vector3 _startPositionMouse;
     private CameraMovement _cameraMovement;
     private Camera _camera;
-    private Rigidbody _rigidbody;    
-    [SerializeField] private int _pullingForce;    
-    private GameManager _gameManager;
+    private Rigidbody _rigidbody;       
     private ProjectileFlight _projectileMovement;
 
     private void Awake()
@@ -23,20 +22,18 @@ public class Projectile : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDr
         _projectileMovement = GetComponent<ProjectileFlight>();
     }
 
-    public void Init(GameManager gameManager)
-    {
-        _gameManager = gameManager;        
-        _camera = gameManager.GetMainCamera();
-        _cameraMovement = gameManager.GetCameraMovement();
+    public void Init(GameSessionCurrentLevel gameSessionCurrentLevel)
+    {             
+        _camera = gameSessionCurrentLevel.GetMainCamera();
+        _cameraMovement = gameSessionCurrentLevel.GetCameraMovement();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         //Включаем "стрелки вокруг снаряда"
-        _indicators.Show();
-        
+        _indicators.Show();        
         //Записываем начальное положение снаряда
-        _startPositionMouse = _camera.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y, 10));
+        _startPositionMouse = _camera.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y, 10));        
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -60,8 +57,8 @@ public class Projectile : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDr
     {
         //Создаем объект из позиции снаряда         
         Vector3 endPositionMouse = _camera.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y, 10));
-        _pullingForce = Mathf.Clamp((int)Vector3.Distance(_startPositionMouse, endPositionMouse), 0, 8);
 
+        _pullingForce = Mathf.Clamp((int)Vector3.Distance(_startPositionMouse, endPositionMouse), 0, 8);
         _indicators.ForceIndicator.SetColorArrow(_pullingForce);
 
         Vector3 heading = new Vector3(transform.position.x, transform.position.y, transform.position.z) - new Vector3(endPositionMouse.x, transform.position.y, endPositionMouse.z);
