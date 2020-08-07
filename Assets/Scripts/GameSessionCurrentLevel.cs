@@ -14,7 +14,8 @@ public enum StateGame
 public class GameSessionCurrentLevel: MonoBehaviour
 {
     [SerializeField] private Camera _mainCamera;
-    [SerializeField] private UIPanel _uiPanel;
+    [SerializeField] private UIPanel _uiPanel;    
+    [SerializeField] private TouchHandler _touchHandler;    
 
     private StateGame _stateGame;    
     private CanvasScaler _canvasScaler;    
