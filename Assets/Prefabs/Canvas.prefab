@@ -334,7 +334,7 @@ GameObject:
   - component: {fileID: 4937386645178539197}
   - component: {fileID: 4937386645178539198}
   m_Layer: 5
-  m_Name: Text
+  m_Name: ResultText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -564,8 +564,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: ResetLevel
+      - m_Target: {fileID: 4937386645705754198}
+        m_MethodName: ButtonResetLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -872,13 +872,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a0a09f79b0728f48856a4beb8ed4a56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameSessionCurrentLevel: {fileID: 0}
   _lifePanel: {fileID: 4937386645599476586}
   _ratingPanel: {fileID: 4937386647034471070}
-  _resultPanel: {fileID: 4937386645741176580}
+  _resultPanel: {fileID: 4495927777330464201}
   _levelText: {fileID: 4937386645157041891}
-  _imageResultPanel: {fileID: 2246656687521138596}
-  _imageDefeat: {fileID: 21300000, guid: 5620736bc9854e146aef61a719391a76, type: 3}
-  _imageVictory: {fileID: 21300000, guid: 6464458a1c69d214c8d646ecca22448a, type: 3}
+  _touchHandler: {fileID: 5722504988293582191}
 --- !u!1 &4937386645741176580
 GameObject:
   m_ObjectHideFlags: 0
@@ -890,6 +889,7 @@ GameObject:
   - component: {fileID: 4937386645741176635}
   - component: {fileID: 4937386645741176633}
   - component: {fileID: 4937386645741176634}
+  - component: {fileID: 4495927777330464201}
   m_Layer: 5
   m_Name: ResultsPanel
   m_TagString: Untagged
@@ -957,6 +957,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4495927777330464201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4937386645741176580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ce8a2023ed9e9541b72739f7ec2d22f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _imageResultPanel: {fileID: 2246656687521138596}
+  _imageDefeat: {fileID: 21300000, guid: 5620736bc9854e146aef61a719391a76, type: 3}
+  _imageVictory: {fileID: 21300000, guid: 6464458a1c69d214c8d646ecca22448a, type: 3}
+  _resultText: {fileID: 4937386645178539198}
 --- !u!1 &4937386645878334349
 GameObject:
   m_ObjectHideFlags: 0
@@ -1224,8 +1240,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: ContinueLevel
+      - m_Target: {fileID: 4937386645705754198}
+        m_MethodName: ButtonContinueLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

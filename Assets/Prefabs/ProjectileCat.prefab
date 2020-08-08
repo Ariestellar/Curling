@@ -126,7 +126,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _directionArrow: {fileID: 3309663771513974635}
-  _forceIndicator: {fileID: 0}
 --- !u!1 &3309663772499536571
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,8 +215,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 3}
-  m_Center: {x: 0, y: 1.5, z: -1.65}
+  m_Size: {x: 1.6158705, y: 1.5134329, z: 2.2232068}
+  m_Center: {x: 0.01280435, y: 1.3676891, z: -1.4152544}
 --- !u!1 &3324685501189406023
 GameObject:
   m_ObjectHideFlags: 0

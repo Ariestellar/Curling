@@ -10,6 +10,7 @@ public class TouchHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] private Vector2 _endTouch;
     [SerializeField] private float _distance;
     [SerializeField] private GameObject _arrowPrefab;
+    [SerializeField] private GameObject _tutorStik;
 
     private GameObject _currentArrow;
     private Image _currentArrowImage;
@@ -39,12 +40,11 @@ public class TouchHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             _endTouch = eventData.position;
             Vector2 target = _startTouch -_endTouch;
             
-            float angleBetween = Vector2.SignedAngle(target.normalized, Vector2.up);
-            Debug.Log(angleBetween);
+            float angleBetween = Vector2.SignedAngle(target.normalized, Vector2.up);            
 
             _distance = target.magnitude;
             if (_distance != 0)
-            {
+            {                
                 var _direction = target / _distance;
                 _currentArrow.transform.right = _direction;
 
@@ -62,6 +62,10 @@ public class TouchHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             _pullingForce = (int)(_currentArrowImage.fillAmount * 10);
             if (_pullingForce != 0)
             {
+                if (_tutorStik != null)
+                {
+                    _tutorStik.SetActive(false);
+                }
                 _currentProjectile.Launch(_pullingForce);
                 _currentProjectile = null;
             }

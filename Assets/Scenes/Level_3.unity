@@ -1348,7 +1348,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mainCamera: {fileID: 963194227}
   _uiPanel: {fileID: 837860160}
-  _touchHandler: {fileID: 1988776369}
 --- !u!114 &1399223922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1364,7 +1363,6 @@ MonoBehaviour:
   _prefabProjectile: {fileID: 3309663772499536571, guid: 3b6a3b9ac056f5b4b97063a4de7aa3e9,
     type: 3}
   _positionStartProjectile: {fileID: 2004348495}
-  _touchHandler: {fileID: 1988776368}
 --- !u!1 &1443401791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1931,21 +1929,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4937386645409610133, guid: 15b71940135f67042914ce2274932fdc,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1399223921}
-    - target: {fileID: 4937386645409610133, guid: 15b71940135f67042914ce2274932fdc,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ResetLevel
-      objectReference: {fileID: 0}
     - target: {fileID: 4937386645705754195, guid: 15b71940135f67042914ce2274932fdc,
         type: 3}
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4937386645705754198, guid: 15b71940135f67042914ce2274932fdc,
+        type: 3}
+      propertyPath: _gameSessionCurrentLevel
+      value: 
+      objectReference: {fileID: 1399223921}
     - target: {fileID: 4937386645705754199, guid: 15b71940135f67042914ce2274932fdc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2056,36 +2049,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4937386646216067600, guid: 15b71940135f67042914ce2274932fdc,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1399223921}
-    - target: {fileID: 4937386646216067600, guid: 15b71940135f67042914ce2274932fdc,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ContinueLevel
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15b71940135f67042914ce2274932fdc, type: 3}
---- !u!114 &1988776368 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5722504988293582191, guid: 15b71940135f67042914ce2274932fdc,
-    type: 3}
-  m_PrefabInstance: {fileID: 1988776367}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1988776369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37e05ef3f1accd541bdb62a371b2f11b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &1988776369 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2561210118138843652, guid: 15b71940135f67042914ce2274932fdc,
-    type: 3}
-  m_PrefabInstance: {fileID: 1988776367}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2004348494
 GameObject:
   m_ObjectHideFlags: 0

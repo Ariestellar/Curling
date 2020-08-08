@@ -6,25 +6,21 @@ using UnityEngine.UI;
 
 public class UIPanel : MonoBehaviour
 {
+    [SerializeField] private GameSessionCurrentLevel _gameSessionCurrentLevel;
     [SerializeField] private GameObject _lifePanel;
     [SerializeField] private GameObject _ratingPanel;
-    [SerializeField] private GameObject _resultPanel; 
-    [SerializeField] private Text _levelText; 
-    //Отделить
-    [SerializeField] private Image _imageResultPanel; 
+    [SerializeField] private ResultPanel _resultPanel; 
+    [SerializeField] private Text _levelText;
+    [SerializeField] private TouchHandler _touchHandler;
 
-    [SerializeField] private Sprite _imageDefeat; 
-    [SerializeField] private Sprite _imageVictory; 
-
-    private Text _resultText;
     private Image[] _lifeImages;
     private Image[] _ratingImages;
+    
 
     private void Awake()
     {
         _lifeImages = _lifePanel.GetComponentsInChildren<Image>();
-        _ratingImages = _ratingPanel.GetComponentsInChildren<Image>();
-        _resultText = _resultPanel.GetComponentInChildren<Text>();
+        _ratingImages = _ratingPanel.GetComponentsInChildren<Image>();        
     }
 
     public void SetColorLifePanel(int countLife)//Отрефакторить решение в лоб
@@ -59,34 +55,32 @@ public class UIPanel : MonoBehaviour
 
     public void ShowResultPanel(StateGame stateGame)
     {
-        if (SceneManager.sceneCountInBuildSettings > DataGame.currentLevel)
-        {
-            if (stateGame == StateGame.Victory)
-            {
-                _imageResultPanel.sprite = _imageVictory;
-                _resultText.text = "Victory";
-            }
-            else if (stateGame == StateGame.Defeat)
-            {
-                _imageResultPanel.sprite = _imageDefeat;
-                _resultText.text = "Defeat";
-            }            
-        }
-        else 
-        {
-            _resultText.text = "End demo :(";
-        }           
-
-        _resultPanel.SetActive(true);
+        _resultPanel.Show(stateGame);
+        _resultPanel.gameObject.SetActive(true);
     }
 
     public void HideResultPanel()
     {
-        _resultPanel.SetActive(false);
+        _resultPanel.gameObject.SetActive(false);
     }
 
     public void UpdateTextLevel(int currentLevel)
     {
         _levelText.text = currentLevel + " level";
+    }
+
+    public void ButtonContinueLevel()
+    {
+        _gameSessionCurrentLevel.ContinueLevel();
+    }
+
+    public void ButtonResetLevel()
+    {
+        _gameSessionCurrentLevel.ResetLevel();
+    }
+
+    public TouchHandler GetTouchHandler()
+    {
+        return _touchHandler;
     }
 }

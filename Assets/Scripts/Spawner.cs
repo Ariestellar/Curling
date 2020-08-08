@@ -8,8 +8,7 @@ using UnityEngine.SceneManagement;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private GameObject _prefabProjectile;    
-    [SerializeField] private Transform _positionStartProjectile;
-    [SerializeField] private TouchHandler _touchHandler;
+    [SerializeField] private Transform _positionStartProjectile;    
     
     public void CreateProjectile(GameSessionCurrentLevel _gameSessionSurrentLevel)
     {
@@ -17,7 +16,7 @@ public class Spawner : MonoBehaviour
         projectile.transform.position = _positionStartProjectile.position;
 
         _gameSessionSurrentLevel.GetCameraMovement().SetTarget(projectile.transform);//При создании снаряда подменям таргет слежения у камеры
-        _touchHandler.SetProjectile(projectile.GetComponent<Projectile>());
+        _gameSessionSurrentLevel.TouchHandler.SetProjectile(projectile.GetComponent<Projectile>());
         projectile.GetComponent<Projectile>().Init(_gameSessionSurrentLevel);
 
         ProjectileFlight projectileFlight = projectile.GetComponent<ProjectileFlight>();
