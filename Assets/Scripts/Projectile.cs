@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(ProjectileFlight))]
 [RequireComponent(typeof(Rigidbody))]
-public class Projectile : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
+public class Projectile : MonoBehaviour
 {
     [SerializeField] private Indicators _indicators;
     [SerializeField] private int _pullingForce;
@@ -28,42 +28,25 @@ public class Projectile : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDr
         _cameraMovement = gameSessionCurrentLevel.GetCameraMovement();
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
+    public void PreparationForLaunch()
     {
-        //Включаем "стрелки вокруг снаряда"
-        _indicators.Show();        
-        //Записываем начальное положение снаряда
-        _startPositionMouse = _camera.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y, 10));        
+        _indicators.Show();
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    public void Launch(int pullingForce)
     {
-        //выключаем "стрелки вокруг снаряда"
         _indicators.Hide();
-        //если сила запуска не равна нулю тогда применяем ее к снаряду умножая на 500 
-        if (_pullingForce != 0)
-        {
-            _rigidbody.AddForce(transform.forward * _pullingForce * 450);
-            //Снаряд запущенн, состояние для проверки окончания его полета
-            _projectileMovement.SetStateFlight(true);
-            //включаем скрипт слежения камеры что бы проследила за снарядом во время полета
-            _cameraMovement.ForProjectile();
-            //Выключаем этот скрипт тк больше не нужен
-            this.enabled = false;
-        }      
+        _rigidbody.AddForce(transform.forward * pullingForce * 450);
+        //Снаряд запущенн, состояние для проверки окончания его полета
+        _projectileMovement.SetStateFlight(true);
+        //включаем скрипт слежения камеры что бы проследила за снарядом во время полета
+        _cameraMovement.ForProjectile();
+        //Выключаем этот скрипт тк больше не нужен
+        this.enabled = false;
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public void RotateForwardDirection(float forwardDirection)
     {
-        //Создаем объект из позиции снаряда         
-        Vector3 endPositionMouse = _camera.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y, 10));
-
-        _pullingForce = Mathf.Clamp((int)Vector3.Distance(_startPositionMouse, endPositionMouse), 0, 8);
-        _indicators.ForceIndicator.SetColorArrow(_pullingForce);
-
-        Vector3 heading = new Vector3(transform.position.x, transform.position.y, transform.position.z) - new Vector3(endPositionMouse.x, transform.position.y, endPositionMouse.z);
-        var distance = heading.magnitude;        
-        var _direction = heading / distance;
-        transform.forward = _direction;
+        transform.eulerAngles = new Vector3(0, forwardDirection, 0);
     }
 }

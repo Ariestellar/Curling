@@ -15,7 +15,7 @@ public class GameSessionCurrentLevel: MonoBehaviour
 {
     [SerializeField] private Camera _mainCamera;
     [SerializeField] private UIPanel _uiPanel;    
-    [SerializeField] private TouchHandler _touchHandler;    
+    [SerializeField] private GameObject _touchHandler;    
 
     private StateGame _stateGame;    
     private CanvasScaler _canvasScaler;    
@@ -63,7 +63,7 @@ public class GameSessionCurrentLevel: MonoBehaviour
                 Destroy(projectile.gameObject);
             }
         }
-        
+        _touchHandler.SetActive(true);
         _spawner.CreateProjectile(this);
     }
 
@@ -110,12 +110,14 @@ public class GameSessionCurrentLevel: MonoBehaviour
 
     private void Defeat()
     {
+        _touchHandler.SetActive(false);
         _stateGame = StateGame.Defeat;
         _uiPanel.ShowResultPanel(_stateGame);
     }
 
     private void Victory()
     {
+        _touchHandler.SetActive(false);
         _stateGame = StateGame.Victory;
         _uiPanel.ShowResultPanel(_stateGame);
     }
