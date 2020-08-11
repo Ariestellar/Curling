@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -15,7 +16,9 @@ public class TouchHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     private GameObject _currentArrow;
     private Image _currentArrowImage;
     private int _pullingForce;
-    private Projectile _currentProjectile;
+    private Projectile _currentProjectile;    
+
+    public Action startLevel;
 
     public void SetProjectile(Projectile currentProjectile)
     {
@@ -24,18 +27,18 @@ public class TouchHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (_currentProjectile != null)
+        if (_currentProjectile != null && DataGame.isMainMenu == false)
         {
             _currentProjectile.PreparationForLaunch();
             _startTouch = eventData.position;
             _currentArrow = Instantiate(_arrowPrefab, _startTouch, Quaternion.identity, transform);
             _currentArrowImage = _currentArrow.GetComponent<Image>();
-        }        
+        }                
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (_currentProjectile != null)
+        if (_currentProjectile != null && DataGame.isMainMenu == false)
         {
             _endTouch = eventData.position;
             Vector2 target = _startTouch -_endTouch;
@@ -56,8 +59,8 @@ public class TouchHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        
-        if (_currentProjectile != null)
+
+        if (_currentProjectile != null && DataGame.isMainMenu == false)
         {
             _pullingForce = (int)(_currentArrowImage.fillAmount * 10);
             if (_pullingForce != 0)
@@ -70,6 +73,11 @@ public class TouchHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
                 _currentProjectile = null;
             }
             Destroy(_currentArrow);
-        }        
+        }
+        else
+        {
+            DataGame.isMainMenu = false;
+            startLevel.Invoke();
+        }
     }
 }

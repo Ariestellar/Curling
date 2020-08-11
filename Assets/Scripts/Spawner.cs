@@ -22,6 +22,6 @@ public class Spawner : MonoBehaviour
         ProjectileFlight projectileFlight = projectile.GetComponent<ProjectileFlight>();
 
         projectileFlight.FinishFlight += _gameSessionSurrentLevel.IncreaseNumberProjectilePulling;
-        projectileFlight.FinishFlight += _gameSessionSurrentLevel.CheckVictory;             
+        projectileFlight.FinishFlight += _gameSessionSurrentLevel.CheckVictory;
     }
 }

@@ -7,20 +7,18 @@ using UnityEngine.UI;
 public class UIPanel : MonoBehaviour
 {
     [SerializeField] private GameSessionCurrentLevel _gameSessionCurrentLevel;
-    [SerializeField] private GameObject _lifePanel;
-    [SerializeField] private GameObject _ratingPanel;
-    [SerializeField] private ResultPanel _resultPanel; 
-    [SerializeField] private Text _levelText;
+    [SerializeField] private GameObject _lifePanel;    
+    [SerializeField] private ResultPanel _resultPanel;     
     [SerializeField] private TouchHandler _touchHandler;
+    [SerializeField] private GameObject _brifing;
+    [SerializeField] private GameObject _buttonMainMenu;
+    [SerializeField] private GameObject _tutor;
 
-    private Image[] _lifeImages;
-    private Image[] _ratingImages;
-    
+    private Image[] _lifeImages; 
 
     private void Awake()
     {
-        _lifeImages = _lifePanel.GetComponentsInChildren<Image>();
-        _ratingImages = _ratingPanel.GetComponentsInChildren<Image>();        
+        _lifeImages = _lifePanel.GetComponentsInChildren<Image>();             
     }
 
     public void SetColorLifePanel(int countLife)//Отрефакторить решение в лоб
@@ -37,26 +35,20 @@ public class UIPanel : MonoBehaviour
             }
         }
     }
-
-    public void SetColorRatingPanel(int countRating)//Отрефакторить решение в лоб
-    {
-        for (int i = 1; i < _ratingImages.Length; i++)
-        {
-            if (countRating >= i)
-            {
-                _ratingImages[i].color = Color.white;
-            }
-            else
-            {
-                _ratingImages[i].color = Color.black;
-            }
-        }
-    }
-
     public void ShowResultPanel(StateGame stateGame)
     {
         _resultPanel.Show(stateGame);
         _resultPanel.gameObject.SetActive(true);
+    }
+
+    public void ShowBrifing()
+    {
+        _brifing.SetActive(true);
+    }
+
+    public void ShowLifePanel()
+    {
+        _lifePanel.SetActive(true);
     }
 
     public void HideResultPanel()
@@ -64,9 +56,10 @@ public class UIPanel : MonoBehaviour
         _resultPanel.gameObject.SetActive(false);
     }
 
-    public void UpdateTextLevel(int currentLevel)
+    public void HideButtonMainMenu()
     {
-        _levelText.text = currentLevel + " level";
+        _buttonMainMenu.GetComponent<Animator>().enabled = true;
+        _tutor.SetActive(false);
     }
 
     public void ButtonContinueLevel()

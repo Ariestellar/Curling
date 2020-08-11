@@ -5,6 +5,7 @@ using UnityEngine;
 public static class DataGame
 {
     public static int currentLevel = 1;
+    public static bool isMainMenu = true;
 
     public static void LevelUp()
     {

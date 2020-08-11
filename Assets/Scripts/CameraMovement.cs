@@ -7,7 +7,8 @@ public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private Transform _target;
     [SerializeField] private Transform _startPosition;
-    [SerializeField] private bool _isReturnToPosition;
+    [SerializeField] private Transform _idlePosition;
+    [SerializeField] private bool _isReturnToStartPosition;
     [SerializeField] private bool _isMovementForProjectile;
 
     private float _smooth = 5.0f;
@@ -20,12 +21,13 @@ public class CameraMovement : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, _target.position + _offset, Time.deltaTime * _smooth);
         }
 
-        if (_isReturnToPosition)
+        if (_isReturnToStartPosition)
         {
             transform.position = Vector3.Lerp(transform.position, _startPosition.position, Time.deltaTime * _smooth);
+            transform.rotation = _startPosition.rotation;
             if (Vector3.Distance(transform.position, _startPosition.position) <= 0.1)
             {
-                _isReturnToPosition = false;                
+                _isReturnToStartPosition = false;                
             }
         }
     }
@@ -35,11 +37,15 @@ public class CameraMovement : MonoBehaviour
         _target = targetPosition;        
     }
 
-    public void ReturnPosition()
+    public void DeleteTarget()
     {
         _target = null;
+    }
+
+    public void ReturnPosition()
+    {                           
         _isMovementForProjectile = false;
-        _isReturnToPosition = true;        
+        _isReturnToStartPosition = true;        
     }
 
     public void ForProjectile()

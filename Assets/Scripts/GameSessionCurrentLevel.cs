@@ -24,7 +24,7 @@ public class GameSessionCurrentLevel: MonoBehaviour
     private int _numberProjectileAtTarget;
     private CameraMovement _mainCameraMovement;
     private Spawner _spawner;
-    private Projectile[] _currentProjectile;
+    private Projectile[] _currentProjectile;    
 
     public StateGame StateLevel => _stateGame;
     public int NumberProjectilePulling => _numberProjectilePulling;
@@ -35,11 +35,12 @@ public class GameSessionCurrentLevel: MonoBehaviour
         _canvasScaler = _uiPanel.GetComponent<CanvasScaler>();
         _mainCameraMovement = _mainCamera.GetComponent<CameraMovement>();
         _spawner = GetComponent<Spawner>();
-        _touchHandler = _uiPanel.GetTouchHandler();
+        _touchHandler = _uiPanel.GetTouchHandler();         
     }
 
     private void Start()
     {
+        _touchHandler.startLevel += StartCurrentLevel;
         if (Screen.width <= 480)
         {
             _canvasScaler.scaleFactor = 1;
@@ -52,7 +53,13 @@ public class GameSessionCurrentLevel: MonoBehaviour
         {
             _canvasScaler.scaleFactor = 3;
         }
-        ResetLevel();
+
+        _touchHandler.gameObject.SetActive(true);
+        _spawner.CreateProjectile(this);
+        if (DataGame.isMainMenu == false)
+        {
+            StartCurrentLevel();
+        }                        
     }
 
     public void ResetLevel()
@@ -91,14 +98,12 @@ public class GameSessionCurrentLevel: MonoBehaviour
 
     public void IncreaseNumberProjectileAtTarget()
     {
-        _numberProjectileAtTarget += 1;
-        _uiPanel.SetColorRatingPanel(_numberProjectileAtTarget);        
+        _numberProjectileAtTarget += 1;              
     }
 
     public void ReduceNumberProjectileAtTarget()
     {
-        _numberProjectileAtTarget -= 1;
-        _uiPanel.SetColorRatingPanel(_numberProjectileAtTarget);
+        _numberProjectileAtTarget -= 1;        
     }
 
     public CameraMovement GetCameraMovement()
@@ -138,18 +143,25 @@ public class GameSessionCurrentLevel: MonoBehaviour
         else
         {
             _mainCameraMovement.ReturnPosition();
+            _mainCameraMovement.DeleteTarget();
             _spawner.CreateProjectile(this);            
         }
     }    
 
     public void ResetData(int currentLevel)
-    {
-        _mainCameraMovement.ReturnPosition();
+    {        
+        _mainCameraMovement.ReturnPosition();               
         _numberProjectilePulling = 0;
         _numberProjectileAtTarget = 0;
-        _uiPanel.SetColorLifePanel(_numberProjectilePulling);
-        _uiPanel.SetColorRatingPanel(_numberProjectileAtTarget);
-        _uiPanel.UpdateTextLevel(currentLevel);
+        _uiPanel.SetColorLifePanel(_numberProjectilePulling);        
         _uiPanel.HideResultPanel();
+    }
+
+    private void StartCurrentLevel()
+    {
+        _uiPanel.ShowBrifing();
+        _uiPanel.ShowLifePanel();
+        _uiPanel.HideButtonMainMenu();
+        _mainCameraMovement.ReturnPosition();               
     }
 }
