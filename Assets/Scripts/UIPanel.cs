@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class UIPanel : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class UIPanel : MonoBehaviour
     [SerializeField] private GameObject _brifing;
     [SerializeField] private GameObject _buttonMainMenu;
     [SerializeField] private GameObject _tutor;
+    [SerializeField] private Text _levelText;
 
     private Image[] _lifeImages; 
 
@@ -58,7 +60,8 @@ public class UIPanel : MonoBehaviour
 
     public void HideButtonMainMenu()
     {
-        _buttonMainMenu.GetComponent<Animator>().enabled = true;
+        //_buttonMainMenu.GetComponent<Animator>().enabled = true; 
+        _buttonMainMenu.SetActive(false);
         _tutor.SetActive(false);
     }
 
@@ -75,5 +78,10 @@ public class UIPanel : MonoBehaviour
     public TouchHandler GetTouchHandler()
     {
         return _touchHandler;
+    }
+
+    public void SetTextLevel(int currentLevel)
+    {
+        _levelText.text = "Level " + currentLevel;
     }
 }

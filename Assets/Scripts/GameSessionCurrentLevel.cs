@@ -31,15 +31,16 @@ public class GameSessionCurrentLevel: MonoBehaviour
     public TouchHandler TouchHandler => _touchHandler;
 
     private void Awake()
-    {
+    {        
         _canvasScaler = _uiPanel.GetComponent<CanvasScaler>();
         _mainCameraMovement = _mainCamera.GetComponent<CameraMovement>();
         _spawner = GetComponent<Spawner>();
-        _touchHandler = _uiPanel.GetTouchHandler();         
+        _touchHandler = _uiPanel.GetTouchHandler();
     }
 
     private void Start()
     {
+        _uiPanel.SetTextLevel(DataGame.currentLevel);
         _touchHandler.startLevel += StartCurrentLevel;
         if (Screen.width <= 480)
         {
@@ -82,7 +83,7 @@ public class GameSessionCurrentLevel: MonoBehaviour
         if (StateLevel == StateGame.Victory && SceneManager.sceneCountInBuildSettings > DataGame.currentLevel)
         {
             DataGame.LevelUp();
-            SceneManager.LoadScene("Level_" + DataGame.currentLevel);            
+            SceneManager.LoadScene("Level" + DataGame.currentLevel);            
         }
         else
         {
