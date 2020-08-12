@@ -287,7 +287,7 @@ MonoBehaviour:
   _startTouch: {x: 0, y: 0}
   _endTouch: {x: 0, y: 0}
   _distance: 0
-  _arrowPrefab: {fileID: 8006330987358400243, guid: 701e9802f8e700449826df8e86131be2,
+  _arrowPrefab: {fileID: 3530276501296987017, guid: 8796abdb56d12e74f97437f1224085d7,
     type: 3}
   _tutorStik: {fileID: 4561835672888584972}
 --- !u!114 &4765664354521064741

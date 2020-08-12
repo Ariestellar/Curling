@@ -53,7 +53,7 @@ public class TouchHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
                 _currentProjectile.RotateForwardDirection(angleBetween);//сравнить угол и врaщать по Y оси                
             }
-            _currentArrowImage.fillAmount = _distance / 1000;
+            _currentArrowImage.fillAmount = _distance / 500;
         }
     }
 
