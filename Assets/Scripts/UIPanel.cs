@@ -1,24 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class UIPanel : MonoBehaviour
 {
-    [SerializeField] private GameObject _lifePanel;
-    [SerializeField] private GameObject _ratingPanel;
-    [SerializeField] private GameObject _resultPanel; 
-    [SerializeField] private Text _levelText; 
+    [SerializeField] private GameSessionCurrentLevel _gameSessionCurrentLevel;
+    [SerializeField] private GameObject _lifePanel;    
+    [SerializeField] private ResultPanel _resultPanel;     
+    [SerializeField] private TouchHandler _touchHandler;
+    [SerializeField] private GameObject _brifing;
+    [SerializeField] private GameObject _buttonMainMenu;
+    [SerializeField] private GameObject _tutor;
+    [SerializeField] private Text _levelText;
 
-    private Text _resultText;
-    private Image[] _lifeImages;
-    private Image[] _ratingImages;
+    private Image[] _lifeImages; 
 
     private void Awake()
     {
-        _lifeImages = _lifePanel.GetComponentsInChildren<Image>();
-        _ratingImages = _ratingPanel.GetComponentsInChildren<Image>();
-        _resultText = _resultPanel.GetComponentInChildren<Text>();
+        _lifeImages = _lifePanel.GetComponentsInChildren<Image>();             
     }
 
     public void SetColorLifePanel(int countLife)//Отрефакторить решение в лоб
@@ -27,43 +29,59 @@ public class UIPanel : MonoBehaviour
         {
             if (countLife >= i)
             {
-                _lifeImages[i].color = Color.white;
+                _lifeImages[i].color = Color.red;
             }
             else 
             {
-                _lifeImages[i].color = Color.red;
+                _lifeImages[i].color = Color.white;
             }
         }
     }
-
-    public void SetColorRatingPanel(int countRating)//Отрефакторить решение в лоб
+    public void ShowResultPanel(StateGame stateGame)
     {
-        for (int i = 1; i < _ratingImages.Length; i++)
-        {
-            if (countRating >= i)
-            {
-                _ratingImages[i].color = Color.white;
-            }
-            else
-            {
-                _ratingImages[i].color = Color.black;
-            }
-        }
+        _resultPanel.Show(stateGame);
+        _resultPanel.gameObject.SetActive(true);
     }
 
-    public void ShowResultPanel(string result)
+    public void ShowBrifing()
     {
-        _resultText.text = result;
-        _resultPanel.SetActive(true);
+        _brifing.SetActive(true);
+    }
+
+    public void ShowLifePanel()
+    {
+        _lifePanel.SetActive(true);
     }
 
     public void HideResultPanel()
     {
-        _resultPanel.SetActive(false);
+        _resultPanel.gameObject.SetActive(false);
     }
 
-    public void UpdateTextLevel(int currentLevel)
+    public void HideButtonMainMenu()
     {
-        _levelText.text = currentLevel + " level";
+        //_buttonMainMenu.GetComponent<Animator>().enabled = true; 
+        _buttonMainMenu.SetActive(false);
+        _tutor.SetActive(false);
+    }
+
+    public void ButtonContinueLevel()
+    {
+        _gameSessionCurrentLevel.ContinueLevel();
+    }
+
+    public void ButtonResetLevel()
+    {
+        _gameSessionCurrentLevel.ResetLevel();
+    }
+
+    public TouchHandler GetTouchHandler()
+    {
+        return _touchHandler;
+    }
+
+    public void SetTextLevel(int currentLevel)
+    {
+        _levelText.text = "Level " + currentLevel;
     }
 }
