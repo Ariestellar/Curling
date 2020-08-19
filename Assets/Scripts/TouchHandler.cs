@@ -11,7 +11,7 @@ public class TouchHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] private Vector2 _endTouch;
     [SerializeField] private float _distance;
     [SerializeField] private GameObject _arrowPrefab;
-    [SerializeField] private GameObject _tutorStik;
+    [SerializeField] private GameObject _tutorStik;    
 
     private GameObject _currentArrow;
     private Image _currentArrowImage;
@@ -54,6 +54,15 @@ public class TouchHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
                 _currentProjectile.RotateForwardDirection(angleBetween);//сравнить угол и врaщать по Y оси                
             }
             _currentArrowImage.fillAmount = _distance / 500;
+            //дистанция 50 = 1 сила => 100 = 2 силы итд..
+            if (_distance > 50)
+            {
+                _currentProjectile.AnimationStateGo(true);                
+            }
+            else 
+            {
+                _currentProjectile.AnimationStateGo(false);                
+            }
         }
     }
 

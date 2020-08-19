@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private Indicators _indicators;
     [SerializeField] private int _pullingForce;
+    [SerializeField] private Animator _animationCat;
 
     private Vector3 _startPositionMouse;
     private CameraMovement _cameraMovement;
@@ -48,5 +49,10 @@ public class Projectile : MonoBehaviour
     public void RotateForwardDirection(float forwardDirection)
     {
         transform.eulerAngles = new Vector3(0, forwardDirection, 0);
+    }
+
+    public void AnimationStateGo(bool state)     
+    {
+        _animationCat.SetBool("go", state);
     }
 }
