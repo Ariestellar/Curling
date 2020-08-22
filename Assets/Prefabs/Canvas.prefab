@@ -287,9 +287,11 @@ MonoBehaviour:
   _startTouch: {x: 0, y: 0}
   _endTouch: {x: 0, y: 0}
   _distance: 0
-  _arrowPrefab: {fileID: 3530276501296987017, guid: 8796abdb56d12e74f97437f1224085d7,
+  _arrowPrefab: {fileID: 853985107662694342, guid: 821927c18ac21974fa741b0ee9ea9e05,
     type: 3}
   _tutorStik: {fileID: 4561835672888584972}
+  _audioManager: {fileID: 3565276233296381491, guid: 2fd2527c864d64c4e80ac886cd3131bf,
+    type: 3}
 --- !u!114 &4765664354521064741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1268,7 +1270,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 591e61700eb8b54428d749d744b8c26c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 878cf0ff00d1f8944a7b415cca5fd707, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1342,7 +1344,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 591e61700eb8b54428d749d744b8c26c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 878cf0ff00d1f8944a7b415cca5fd707, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1637,7 +1639,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 591e61700eb8b54428d749d744b8c26c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 878cf0ff00d1f8944a7b415cca5fd707, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1709,7 +1711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19215687, g: 0.5568628, b: 0.827451, a: 1}
+  m_Color: {r: 0.3529412, g: 0.4784314, b: 0.91372555, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1997,7 +1999,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 591e61700eb8b54428d749d744b8c26c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 878cf0ff00d1f8944a7b415cca5fd707, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

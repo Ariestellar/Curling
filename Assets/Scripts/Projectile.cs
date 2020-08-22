@@ -9,13 +9,14 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private Indicators _indicators;
     [SerializeField] private int _pullingForce;
-    [SerializeField] private Animator _animationCat;
+    [SerializeField] private Animator _animationCat;    
 
     private Vector3 _startPositionMouse;
     private CameraMovement _cameraMovement;
     private Camera _camera;
     private Rigidbody _rigidbody;       
     private ProjectileFlight _projectileMovement;
+    private AudioManager _audioManager;
 
     private void Awake()
     {        
@@ -27,6 +28,7 @@ public class Projectile : MonoBehaviour
     {             
         _camera = gameSessionCurrentLevel.GetMainCamera();
         _cameraMovement = gameSessionCurrentLevel.GetCameraMovement();
+        _audioManager = gameSessionCurrentLevel.GetAudioManager();
     }
 
     public void PreparationForLaunch()
@@ -36,6 +38,7 @@ public class Projectile : MonoBehaviour
 
     public void Launch(int pullingForce)
     {
+        _audioManager.PlayNya();
         _indicators.Hide();
         _rigidbody.AddForce(transform.forward * pullingForce * 450);
         //Снаряд запущенн, состояние для проверки окончания его полета

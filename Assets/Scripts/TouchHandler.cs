@@ -12,6 +12,7 @@ public class TouchHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] private float _distance;
     [SerializeField] private GameObject _arrowPrefab;
     [SerializeField] private GameObject _tutorStik;    
+    [SerializeField] private AudioManager _audioManager;
 
     private GameObject _currentArrow;
     private Image _currentArrowImage;
@@ -50,7 +51,7 @@ public class TouchHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             {                
                 var _direction = target / _distance;
                 _currentArrow.transform.right = _direction;
-
+                _audioManager.PlayPulling();
                 _currentProjectile.RotateForwardDirection(angleBetween);//сравнить угол и врaщать по Y оси                
             }
             _currentArrowImage.fillAmount = _distance / 500;

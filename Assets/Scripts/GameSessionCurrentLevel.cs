@@ -15,6 +15,7 @@ public enum StateGame
 public class GameSessionCurrentLevel: MonoBehaviour
 {
     [SerializeField] private Camera _mainCamera;
+    [SerializeField] private AudioManager _audioManager;
     [SerializeField] private UIPanel _uiPanel;
     
     private TouchHandler _touchHandler;       
@@ -117,11 +118,17 @@ public class GameSessionCurrentLevel: MonoBehaviour
         return _mainCamera;
     }
 
+    public AudioManager GetAudioManager()
+    {
+        return _audioManager;
+    }
+
     private void Defeat()
     {
         _touchHandler.gameObject.SetActive(false);
         _stateGame = StateGame.Defeat;
         _uiPanel.ShowResultPanel(_stateGame);
+        _audioManager.PlayFailed();
     }
 
     private void Victory()
@@ -129,6 +136,7 @@ public class GameSessionCurrentLevel: MonoBehaviour
         _touchHandler.gameObject.SetActive(false);
         _stateGame = StateGame.Victory;
         _uiPanel.ShowResultPanel(_stateGame);
+        _audioManager.PlayVictory();
     }
 
     public void  CheckVictory()

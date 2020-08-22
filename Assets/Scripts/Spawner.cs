@@ -18,6 +18,7 @@ public class Spawner : MonoBehaviour
         _gameSessionSurrentLevel.GetCameraMovement().SetTarget(projectile.transform);//При создании снаряда подменям таргет слежения у камеры
         _gameSessionSurrentLevel.TouchHandler.SetProjectile(projectile.GetComponent<Projectile>());
         projectile.GetComponent<Projectile>().Init(_gameSessionSurrentLevel);
+        projectile.GetComponent<ChekClash>().Init(_gameSessionSurrentLevel.GetAudioManager());
 
         ProjectileFlight projectileFlight = projectile.GetComponent<ProjectileFlight>();
 

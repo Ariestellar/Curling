@@ -40,5 +40,5 @@ public class ProjectileFlight : MonoBehaviour
     private void OnDisable()
     {
         _finishFlight = null;
-    }
+    }    
 }
