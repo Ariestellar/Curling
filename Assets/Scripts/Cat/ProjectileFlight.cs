@@ -26,7 +26,6 @@ public class ProjectileFlight : MonoBehaviour
                 _isFlight = false;
                 
                 this.enabled = false;//выключаем этот класс за ненадобностью 
-
             }
             _previousPosition = transform.position.z;
         }

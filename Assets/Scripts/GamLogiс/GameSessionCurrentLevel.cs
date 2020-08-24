@@ -25,7 +25,7 @@ public class GameSessionCurrentLevel: MonoBehaviour
     private int _numberProjectileAtTarget;
     private CameraMovement _mainCameraMovement;
     private Spawner _spawner;
-    private Projectile[] _currentProjectile;    
+    private List<GameObject> _currentProjectile;    
 
     public StateGame StateLevel => _stateGame;
     public int NumberProjectilePulling => _numberProjectilePulling;
@@ -67,14 +67,15 @@ public class GameSessionCurrentLevel: MonoBehaviour
     public void ResetLevel()
     {
         ResetData(DataGame.currentLevel);
-        _currentProjectile = GetComponentsInChildren<Projectile>();
-        if (_currentProjectile != null)
+        _spawner.DeleteCurrentProjectline();
+        /*_currentProjectile = GetComponentsInChildren<Projectile>();
+        /if (_currentProjectile != null)
         {
             foreach (var projectile in _currentProjectile)
             {
                 Destroy(projectile.gameObject);
             }
-        }
+        }*/
         _touchHandler.gameObject.SetActive(true);
         _spawner.CreateProjectile(this);
     }
@@ -95,7 +96,7 @@ public class GameSessionCurrentLevel: MonoBehaviour
     public void IncreaseNumberProjectilePulling()
     {
         _numberProjectilePulling += 1;
-        _uiPanel.SetColorLifePanel(_numberProjectilePulling);
+        //_uiPanel.SetColorLifePanel(_numberProjectilePulling);
     }
 
     public void IncreaseNumberProjectileAtTarget()
@@ -153,14 +154,32 @@ public class GameSessionCurrentLevel: MonoBehaviour
             _mainCameraMovement.DeleteTarget();
             _spawner.CreateProjectile(this);            
         }
-    }    
+    }
+    public void CheckHittingZone()
+    {
+        _currentProjectile = _spawner.CurrentProjectile;        
+
+        for (int i = 0; i < _currentProjectile.Count; i++)
+        {
+            if (_currentProjectile[i].GetComponent<CheckHitting>().HittingZone == true)
+            {
+                _uiPanel.SetColorLifePanel(i, Color.green);
+            }
+            else
+            {
+                _uiPanel.SetColorLifePanel(i, Color.grey);
+            }
+        }
+        //_uiPanel.SetColorLifePanel();
+    }
 
     public void ResetData(int currentLevel)
     {        
         _mainCameraMovement.ReturnPosition();               
         _numberProjectilePulling = 0;
         _numberProjectileAtTarget = 0;
-        _uiPanel.SetColorLifePanel(_numberProjectilePulling);        
+        _uiPanel.ResetLifePanel();
+        //_uiPanel.SetColorLifePanel(_numberProjectilePulling);        
         _uiPanel.HideResultPanel();
     }
 

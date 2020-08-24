@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private Indicators _indicators;
     [SerializeField] private int _pullingForce;
     [SerializeField] private Animator _animationCat;    
-
+    
     private Vector3 _startPositionMouse;
     private CameraMovement _cameraMovement;
     private Camera _camera;

@@ -23,20 +23,19 @@ public class UIPanel : MonoBehaviour
         _lifeImages = _lifePanel.GetComponentsInChildren<Image>();             
     }
 
-    public void SetColorLifePanel(int countLife)//Отрефакторить решение в лоб
+    public void SetColorLifePanel(int countLife, Color color)//Отрефакторить решение в лоб
     {
+        _lifeImages[countLife + 1].color = color;        
+    }
+
+    public void ResetLifePanel()
+    {    
         for (int i = 1; i < _lifeImages.Length; i++)
         {
-            if (countLife >= i)
-            {
-                _lifeImages[i].color = Color.red;
-            }
-            else 
-            {
-                _lifeImages[i].color = Color.white;
-            }
+            _lifeImages[i].color = Color.white;
         }
     }
+
     public void ShowResultPanel(StateGame stateGame)
     {
         _resultPanel.Show(stateGame);

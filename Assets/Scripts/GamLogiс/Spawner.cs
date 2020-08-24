@@ -11,7 +11,10 @@ public class Spawner : MonoBehaviour
     [SerializeField] private Transform _positionStartProjectile;    
     [SerializeField] private Material[] _materialsCats;    
     [SerializeField] private int _numberCat = 0;    
-    
+    [SerializeField] private List<GameObject> _currentProjectile;
+
+    public List<GameObject> CurrentProjectile => _currentProjectile;
+
     public void CreateProjectile(GameSessionCurrentLevel _gameSessionSurrentLevel)
     {
         GameObject projectile = Instantiate(_prefabProjectile, this.transform);
@@ -27,6 +30,22 @@ public class Spawner : MonoBehaviour
         ProjectileFlight projectileFlight = projectile.GetComponent<ProjectileFlight>();
 
         projectileFlight.FinishFlight += _gameSessionSurrentLevel.IncreaseNumberProjectilePulling;
+        projectileFlight.FinishFlight += _gameSessionSurrentLevel.CheckHittingZone;
         projectileFlight.FinishFlight += _gameSessionSurrentLevel.CheckVictory;
+
+        _currentProjectile.Add(projectile);
+    }
+
+    public void DeleteCurrentProjectline()
+    {
+        _numberCat = 0;
+        if (_currentProjectile != null)
+        {
+            foreach (var projectile in _currentProjectile)
+            {
+                Destroy(projectile);
+            }
+        }
+        _currentProjectile.Clear();
     }
 }
