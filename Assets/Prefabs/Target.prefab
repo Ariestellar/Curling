@@ -453,6 +453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameManager: {fileID: 0}
+  _colorTarget: 4
 --- !u!1 &2612828011799866099
 GameObject:
   m_ObjectHideFlags: 0
