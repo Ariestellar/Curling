@@ -6,6 +6,7 @@ TagManager:
   tags:
   - wall
   - Cat
+  - PlatformStopper
   layers:
   - Default
   - TransparentFX
