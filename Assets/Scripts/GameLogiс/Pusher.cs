@@ -7,7 +7,8 @@ enum DirectionForce
     left,
     right,
     forward,
-    back
+    back,
+    diag
 }
 
 public class Pusher : MonoBehaviour
@@ -42,6 +43,10 @@ public class Pusher : MonoBehaviour
         else if (_directionMove == DirectionForce.forward)
         {
             _directionForce = Vector3.forward;//не фризить позицию по z
+        }
+        else if (_directionMove == DirectionForce.diag)
+        {
+            _directionForce = Vector3.forward + Vector3.left;//не фризить позицию по z
         }
     }
 

@@ -5,21 +5,32 @@ using UnityEngine;
 public class TargetTrigger : MonoBehaviour
 {
     [SerializeField] private GameSessionCurrentLevel _gameManager;
+    [SerializeField] private ColorTarget _colorTarget;
     private void OnTriggerEnter(Collider other)
-    {
-        _gameManager.IncreaseNumberProjectileAtTarget();
+    {           
         if (other.gameObject.GetComponent<CheckHitting>())
         {
-            other.gameObject.GetComponent<CheckHitting>().SetHittingZone(true);
+            CheckHitting checkHitting = other.gameObject.GetComponent<CheckHitting>();
+            
+            if (_colorTarget == ColorTarget.non || _colorTarget == checkHitting.ColorTarget)
+            {
+                _gameManager.IncreaseNumberProjectileAtTarget();
+                checkHitting.SetHittingZone(true);
+            }            
         }
     }
 
     private void OnTriggerExit(Collider other)
-    {
-        _gameManager.ReduceNumberProjectileAtTarget();
+    {        
         if (other.gameObject.GetComponent<CheckHitting>())
         {
-            other.gameObject.GetComponent<CheckHitting>().SetHittingZone(false);
+            CheckHitting checkHitting = other.gameObject.GetComponent<CheckHitting>();
+
+            if (_colorTarget == ColorTarget.non || _colorTarget == checkHitting.ColorTarget)
+            {
+                _gameManager.ReduceNumberProjectileAtTarget();
+                other.gameObject.GetComponent<CheckHitting>().SetHittingZone(false);
+            }                
         }
     }
 }

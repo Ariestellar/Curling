@@ -25,6 +25,7 @@ public class Spawner : MonoBehaviour
         projectile.GetComponent<Projectile>().Init(_gameSessionSurrentLevel);
         projectile.GetComponent<ChekClash>().Init(_gameSessionSurrentLevel.GetAudioManager());
         projectile.GetComponent<ColoringForCats>().SetMaterialSkin(_materialsCats[_numberCat]);
+        projectile.GetComponent<CheckHitting>().Init(_numberCat);
         _numberCat += 1;
 
         ProjectileFlight projectileFlight = projectile.GetComponent<ProjectileFlight>();
