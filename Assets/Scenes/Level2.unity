@@ -540,6 +540,13 @@ MonoBehaviour:
   _prefabProjectile: {fileID: 3309663772499536571, guid: 3b6a3b9ac056f5b4b97063a4de7aa3e9,
     type: 3}
   _positionStartProjectile: {fileID: 2004348495}
+  _materialsCats:
+  - {fileID: 2100000, guid: 12358ba67515ad84889017eb58371a74, type: 2}
+  - {fileID: 2100000, guid: 3f2433c9fd94ded43b6fc45dae7cf51b, type: 2}
+  - {fileID: 2100000, guid: 5447a8a610be0f54098b06dbdcb1d844, type: 2}
+  - {fileID: 2100000, guid: 8f211326d2a15d24a927b62779fb6ccb, type: 2}
+  _numberCat: 0
+  _currentProjectile: []
 --- !u!114 &1399223922
 MonoBehaviour:
   m_ObjectHideFlags: 0
