@@ -7,17 +7,11 @@ using UnityEngine.UI;
 
 public class TestPanel : MonoBehaviour
 {
-    [SerializeField] private Dropdown _listLevel;
-
-    private void Start()
-    {
-        //_listLevel.captionText.text = Convert.ToString(DataGame.currentLevel);
-        Debug.Log(DataGame.currentLevel);
-    }
+    [SerializeField] private Dropdown _listLevel;     
 
     public void ChangedLevel()
     {
-        DataGame.currentLevel = _listLevel.value + 1;
+        DataGame.currentLevel = _listLevel.value;
         SceneManager.LoadScene("Level" + DataGame.currentLevel);
     }
 

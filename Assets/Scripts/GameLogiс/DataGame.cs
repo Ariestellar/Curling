@@ -16,7 +16,7 @@ public static class DataGame
     public static void SaveGame(int currentLevel)
     {
         PlayerPrefs.SetInt("CurrentLevel", currentLevel);
-        PlayerPrefs.Save();//HKEY_CURRENT_USER/Software/Unity/UnityEditor/DefaultCompany
+        PlayerPrefs.Save();//HKEY_CURRENT_USER/Software/Unity/UnityEditor/DefaultCompany        
     }
 
     public static int GetCurrentLevel()
@@ -28,6 +28,6 @@ public static class DataGame
         else
         {
             return 1;
-        }
+        }        
     }
 }
