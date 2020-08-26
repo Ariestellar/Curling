@@ -7,7 +7,7 @@ public class GameLauncher : MonoBehaviour
 {    
     private void Start()
     {
-        DataGame.currentLevel = DataGame.LoadGame();
+        DataGame.currentLevel = DataGame.GetCurrentLevel();        
         SceneManager.LoadScene("Level" + DataGame.currentLevel);
     }
 }

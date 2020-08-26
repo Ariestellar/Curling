@@ -6,3 +6,10 @@
     pink = 2,
     yellow = 3
 }
+
+public enum StateGame
+{
+    Victory,
+    Defeat,
+    EndDemo
+}

@@ -16,10 +16,18 @@ public static class DataGame
     public static void SaveGame(int currentLevel)
     {
         PlayerPrefs.SetInt("CurrentLevel", currentLevel);
+        PlayerPrefs.Save();//HKEY_CURRENT_USER/Software/Unity/UnityEditor/DefaultCompany
     }
 
-    public static int LoadGame()
+    public static int GetCurrentLevel()
     {
-        return PlayerPrefs.GetInt("CurrentLevel", 1);
+        if (PlayerPrefs.HasKey("CurrentLevel"))
+        {
+            return PlayerPrefs.GetInt("CurrentLevel");            
+        }
+        else
+        {
+            return 1;
+        }
     }
 }

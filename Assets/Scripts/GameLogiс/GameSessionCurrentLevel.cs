@@ -4,13 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public enum StateGame
-{
-    Victory,
-    Defeat,
-    EndDemo
-}
-
 [RequireComponent(typeof(Spawner))]
 public class GameSessionCurrentLevel: MonoBehaviour
 {
@@ -67,15 +60,7 @@ public class GameSessionCurrentLevel: MonoBehaviour
     public void ResetLevel()
     {
         ResetData(DataGame.currentLevel);
-        _spawner.DeleteCurrentProjectline();
-        /*_currentProjectile = GetComponentsInChildren<Projectile>();
-        /if (_currentProjectile != null)
-        {
-            foreach (var projectile in _currentProjectile)
-            {
-                Destroy(projectile.gameObject);
-            }
-        }*/
+        _spawner.DeleteCurrentProjectline();        
         _touchHandler.gameObject.SetActive(true);
         _spawner.CreateProjectile(this);
     }
@@ -95,8 +80,7 @@ public class GameSessionCurrentLevel: MonoBehaviour
 
     public void IncreaseNumberProjectilePulling()
     {
-        _numberProjectilePulling += 1;
-        //_uiPanel.SetColorLifePanel(_numberProjectilePulling);
+        _numberProjectilePulling += 1;        
     }
 
     public void IncreaseNumberProjectileAtTarget()
@@ -169,8 +153,7 @@ public class GameSessionCurrentLevel: MonoBehaviour
             {
                 _uiPanel.SetColorLifePanel(i, Color.grey);
             }
-        }
-        //_uiPanel.SetColorLifePanel();
+        }        
     }
 
     public void ResetData(int currentLevel)
@@ -178,8 +161,7 @@ public class GameSessionCurrentLevel: MonoBehaviour
         _mainCameraMovement.ReturnPosition();               
         _numberProjectilePulling = 0;
         _numberProjectileAtTarget = 0;
-        _uiPanel.ResetLifePanel();
-        //_uiPanel.SetColorLifePanel(_numberProjectilePulling);        
+        _uiPanel.ResetLifePanel();            
         _uiPanel.HideResultPanel();
     }
 

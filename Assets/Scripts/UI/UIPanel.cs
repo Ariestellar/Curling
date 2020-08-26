@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
@@ -23,7 +22,7 @@ public class UIPanel : MonoBehaviour
         _lifeImages = _lifePanel.GetComponentsInChildren<Image>();             
     }
 
-    public void SetColorLifePanel(int countLife, Color color)//Отрефакторить решение в лоб
+    public void SetColorLifePanel(int countLife, Color color)
     {
         _lifeImages[countLife + 1].color = color;        
     }
