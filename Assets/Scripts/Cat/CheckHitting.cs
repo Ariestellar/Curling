@@ -6,14 +6,14 @@ using UnityEngine;
 public class CheckHitting : MonoBehaviour
 {
     [SerializeField] private bool _hittingZone;
-    [SerializeField] private ColorTarget _colorTarget;
+    [SerializeField] private ColorTargetAndCats _colorTarget;
 
-    public ColorTarget ColorTarget => _colorTarget;
+    public ColorTargetAndCats ColorTarget => _colorTarget;
     public bool HittingZone => _hittingZone;
 
     public void Init(int colorTarget)
     {
-        _colorTarget = (ColorTarget)colorTarget;
+        _colorTarget = (ColorTargetAndCats)colorTarget;
     }
 
     public void SetHittingZone(bool value)

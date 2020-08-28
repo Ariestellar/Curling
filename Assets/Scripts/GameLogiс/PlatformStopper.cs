@@ -23,11 +23,12 @@ public class PlatformStopper : MonoBehaviour
         if (_ridgidbodyCurrentCat && _braking)
         {
             _ridgidbodyCurrentCat.velocity = Vector3.Lerp(_ridgidbodyCurrentCat.velocity, Vector3.zero, _speedStopped);
-            if (_ridgidbodyCurrentCat.velocity == Vector3.zero)
+            _pusher.Launch();
+            /*if (_ridgidbodyCurrentCat.velocity == Vector3.zero)
             {
-                _braking = false;                
-                LaunchPushingMechanism();
-            }
+                _braking = false;
+                _pusher.Launch();
+            }*/
         }        
     }
 
@@ -38,11 +39,5 @@ public class PlatformStopper : MonoBehaviour
             _ridgidbodyCurrentCat = null;
             _braking = true;
         }
-    }
-
-    private void LaunchPushingMechanism()
-    {
-        //если по x больше 6 то стоп
-        _pusher.Launch();
     }
 }

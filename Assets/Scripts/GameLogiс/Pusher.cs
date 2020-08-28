@@ -1,21 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-enum DirectionForce
-{
-    left,
-    right,
-    forward,
-    back,
-    diag
-}
+﻿using UnityEngine;
 
 public class Pusher : MonoBehaviour
 {
     [SerializeField] private int _forceLaunch;
     [SerializeField] private bool _isLaunch;    
-    [SerializeField] private DirectionForce _directionMove;    
+    [SerializeField] private DirectionPusher _directionMove;    
     [SerializeField] private Vector3 _directionForce;    
     [SerializeField] private bool _isGo;    
     [Range(0,1)][SerializeField] private float _speedRevert;    
@@ -28,23 +17,23 @@ public class Pusher : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _transform = GetComponent<Transform>();
 
-        if (_directionMove == DirectionForce.right)
+        if (_directionMove == DirectionPusher.right)
         {
             _directionForce = Vector3.right;//не фризить позицию по x
         }
-        else if (_directionMove == DirectionForce.left)
+        else if (_directionMove == DirectionPusher.left)
         {
             _directionForce = Vector3.left;//не фризить позицию по x
         }
-        else if (_directionMove == DirectionForce.back)
+        else if (_directionMove == DirectionPusher.back)
         {
             _directionForce = Vector3.back;//не фризить позицию по z
         }
-        else if (_directionMove == DirectionForce.forward)
+        else if (_directionMove == DirectionPusher.forward)
         {
             _directionForce = Vector3.forward;//не фризить позицию по z
         }
-        else if (_directionMove == DirectionForce.diag)
+        else if (_directionMove == DirectionPusher.diag)
         {
             _directionForce = Vector3.forward + Vector3.left;//не фризить позицию по z
         }
@@ -52,7 +41,7 @@ public class Pusher : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_isGo)
+        if (_isGo)//для тестов что бы проверять по нажатию на чекбокс
         {
             Launch();
             _isGo = false;
@@ -60,25 +49,25 @@ public class Pusher : MonoBehaviour
 
         if (_isLaunch)
         {            
-            if (transform.localPosition.x > 6)
+            if (_transform.localPosition.x > 6)
             {                
                 _rigidbody.velocity = Vector3.zero;
                 ReverseMovement();
                 _isLaunch = false;
-            }
-            
+            }            
         }
     }
 
     public void Launch()
-    {        
+    {
+        _rigidbody.isKinematic = false;
         _rigidbody.AddForce(_directionForce * _forceLaunch);
         _isLaunch = true;
     }
 
     private void ReverseMovement()
     {
-        //transform.localPosition = Vector3.Lerp(transform.localPosition, Vector3.zero, _speedRevert);
-        transform.localPosition = Vector3.zero;
+        _transform.localPosition = Vector3.zero;
+        _rigidbody.isKinematic = true;
     }
 }

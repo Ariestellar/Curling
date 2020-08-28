@@ -12,13 +12,20 @@ public class TouchHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] private float _distance;
     [SerializeField] private GameObject _arrowPrefab;      
     [SerializeField] private AudioManager _audioManager;
+    [SerializeField] private GameObject _indicatorPullingForce;
 
     private GameObject _currentArrow;
     private Image _currentArrowImage;
     private int _pullingForce;
     private Projectile _currentProjectile;    
+    private Text _indicatorPullingForceText;    
 
     public Action startLevel;
+
+    private void Awake()
+    {
+        _indicatorPullingForceText = _indicatorPullingForce.GetComponentInChildren<Text>();
+    }
 
     public void SetProjectile(Projectile currentProjectile)
     {
@@ -29,10 +36,18 @@ public class TouchHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     {
         if (_currentProjectile != null && DataGame.isMainMenu == false)
         {
+            _indicatorPullingForce.SetActive(true);
             _currentProjectile.PreparationForLaunch();
             _startTouch = eventData.position;
-            _currentArrow = Instantiate(_arrowPrefab, _startTouch, Quaternion.identity, transform);
-            _currentArrowImage = _currentArrow.GetComponent<Image>();
+            if (_currentArrow != null)
+            {
+                Destroy(_currentArrow);
+            }
+            else if(_currentArrow == null)
+            {
+                _currentArrow = Instantiate(_arrowPrefab, _startTouch, Quaternion.identity, transform);
+                _currentArrowImage = _currentArrow.GetComponent<Image>();
+            }            
         }                
     }
 
@@ -53,6 +68,9 @@ public class TouchHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
                 _currentProjectile.RotateForwardDirection(angleBetween);//сравнить угол и врaщать по Y оси                
             }
             _currentArrowImage.fillAmount = _distance / 500;
+            _pullingForce = (int)(_currentArrowImage.fillAmount * 10);
+            _indicatorPullingForceText.text = "" + _pullingForce;
+
             //дистанция 50 = 1 сила => 100 = 2 силы итд..
             if (_distance > 50)
             {
@@ -67,15 +85,14 @@ public class TouchHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnEndDrag(PointerEventData eventData)
     {
-
         if (_currentProjectile != null && DataGame.isMainMenu == false)
-        {
-            _pullingForce = (int)(_currentArrowImage.fillAmount * 10);
+        {            
             if (_pullingForce != 0)
             {                
                 _currentProjectile.Launch(_pullingForce);
                 _currentProjectile = null;
             }
+            _indicatorPullingForce.SetActive(false);
             Destroy(_currentArrow);
         }
         else

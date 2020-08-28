@@ -1,4 +1,4 @@
-﻿public enum ColorTarget
+﻿public enum ColorTargetAndCats
 {
     non = 4,
     ginger = 0,
@@ -12,4 +12,13 @@ public enum StateGame
     Victory,
     Defeat,
     EndDemo
+}
+
+public enum DirectionPusher
+{
+    left,
+    right,
+    forward,
+    back,
+    diag
 }

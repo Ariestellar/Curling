@@ -19,8 +19,9 @@ public class Spawner : MonoBehaviour
     {
         GameObject projectile = Instantiate(_prefabProjectile, this.transform);
         projectile.transform.position = _positionStartProjectile.position;
+        projectile.transform.Rotate(Vector3.up, _positionStartProjectile.eulerAngles.y);
 
-        _gameSessionSurrentLevel.GetCameraMovement().SetTarget(projectile.transform);//При создании снаряда подменям таргет слежения у камеры
+        _gameSessionSurrentLevel.GetCameraMovement().SetTarget(projectile.transform);//При создании снаряда подменяем таргет слежения у камеры
         _gameSessionSurrentLevel.TouchHandler.SetProjectile(projectile.GetComponent<Projectile>());
         projectile.GetComponent<Projectile>().Init(_gameSessionSurrentLevel);
         projectile.GetComponent<ChekClash>().Init(_gameSessionSurrentLevel.GetAudioManager());
