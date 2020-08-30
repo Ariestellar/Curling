@@ -4,40 +4,48 @@ using UnityEngine;
 
 public class PlatformStopper : MonoBehaviour
 {
-    [Range(0, 1)] [SerializeField] private float _speedStopped;
-    [SerializeField] private bool _braking = true;
+    [Range(0, 1)] [SerializeField] private float _speedStopped;   
     [SerializeField] private Pusher _pusher;
+    [SerializeField] private bool _isStopperObject;
 
     private Rigidbody _ridgidbodyCurrentCat;
+    private ProjectileFlight _currentProjectileFlight;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Cat")
         {
             _ridgidbodyCurrentCat = other.gameObject.GetComponent<Rigidbody>();
+            _currentProjectileFlight = other.gameObject.GetComponent<ProjectileFlight>();
+            _currentProjectileFlight.SetTemporaryStop(true);
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (_ridgidbodyCurrentCat && _braking)
+        if (other.gameObject.tag == "Cat")
         {
-            _ridgidbodyCurrentCat.velocity = Vector3.Lerp(_ridgidbodyCurrentCat.velocity, Vector3.zero, _speedStopped);
-            _pusher.Launch();
-            /*if (_ridgidbodyCurrentCat.velocity == Vector3.zero)
+            if (_ridgidbodyCurrentCat && _isStopperObject == false)
             {
-                _braking = false;
+                _ridgidbodyCurrentCat.velocity = Vector3.Lerp(_ridgidbodyCurrentCat.velocity, Vector3.zero, _speedStopped);                
+            }
+
+            if (_currentProjectileFlight.GetisStopPlatform() == true)
+            {
                 _pusher.Launch();
-            }*/
-        }        
+                _isStopperObject = true;
+            }
+        }            
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Cat")
         {
+            _currentProjectileFlight.SetTemporaryStop(false);
+            _currentProjectileFlight = null;
             _ridgidbodyCurrentCat = null;
-            _braking = true;
+            _isStopperObject = false;                     
         }
     }
 }

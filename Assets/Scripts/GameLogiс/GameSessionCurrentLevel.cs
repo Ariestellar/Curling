@@ -10,7 +10,7 @@ public class GameSessionCurrentLevel: MonoBehaviour
     [SerializeField] private Camera _mainCamera;
     [SerializeField] private AudioManager _audioManager;
     [SerializeField] private UIPanel _uiPanel;
-    
+
     private TouchHandler _touchHandler;       
     private StateGame _stateGame;    
     private CanvasScaler _canvasScaler;    
@@ -29,7 +29,7 @@ public class GameSessionCurrentLevel: MonoBehaviour
         _canvasScaler = _uiPanel.GetComponent<CanvasScaler>();
         _mainCameraMovement = _mainCamera.GetComponent<CameraMovement>();
         _spawner = GetComponent<Spawner>();
-        _touchHandler = _uiPanel.GetTouchHandler();
+        _touchHandler = _uiPanel.GetTouchHandler();        
     }
 
     private void Start()
@@ -68,9 +68,10 @@ public class GameSessionCurrentLevel: MonoBehaviour
     public void ContinueLevel()
     {
         if (StateLevel == StateGame.Victory && SceneManager.sceneCountInBuildSettings > DataGame.currentLevel)
-        {
+        {            
             DataGame.LevelUp();
-            SceneManager.LoadScene("Level" + DataGame.currentLevel);            
+            SceneTransition.SwitchToScene("Level" + DataGame.currentLevel);
+            //SceneManager.LoadScene("Level" + DataGame.currentLevel);            
         }
         else
         {

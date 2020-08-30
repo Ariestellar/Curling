@@ -8,9 +8,9 @@ public class ProjectileFlight : MonoBehaviour
 {
     private Action _finishFlight;    
     private bool _isFlight;
+    private bool _isTemporaryStop;//временная остановка на платформе
+    private bool _isStopPlatform;//снаряд остановился на платформе
     private float _previousPosition;
-
-    public bool IsFlight => _isFlight;
 
     public Action FinishFlight { get => _finishFlight; set => _finishFlight = value; }
 
@@ -21,11 +21,16 @@ public class ProjectileFlight : MonoBehaviour
         {
             if (transform.position.z == _previousPosition)
             {
-                FinishFlight?.Invoke();
-
-                _isFlight = false;
-                
-                this.enabled = false;//выключаем этот класс за ненадобностью 
+                if (_isTemporaryStop)//если это временная остановка то:
+                {
+                    _isStopPlatform = true;
+                }
+                else
+                {
+                    FinishFlight?.Invoke();
+                    _isFlight = false;
+                    this.enabled = false;//выключаем этот класс за ненадобностью 
+                }                
             }
             _previousPosition = transform.position.z;
         }
@@ -34,7 +39,17 @@ public class ProjectileFlight : MonoBehaviour
     public void SetStateFlight(bool isFlight)
     {
         _isFlight = isFlight;
-    }   
+    }
+
+    public void SetTemporaryStop(bool isTemporaryStop)
+    {
+        _isTemporaryStop = isTemporaryStop;
+    }
+
+    public bool GetisStopPlatform()
+    {
+        return _isStopPlatform;
+    }
 
     private void OnDisable()
     {

@@ -13,7 +13,7 @@ public class UIPanel : MonoBehaviour
     [SerializeField] private GameObject _brifing;
     [SerializeField] private GameObject _buttonMainMenu;
     [SerializeField] private GameObject _tutor;
-    [SerializeField] private Text _levelText;
+    [SerializeField] private Text _levelText;    
 
     private Image[] _lifeImages; 
 
