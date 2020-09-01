@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public static class DataGame
 {
@@ -8,6 +9,10 @@ public static class DataGame
     public static void LevelUp()
     {
         currentLevel += 1;
+        if (currentLevel >= SceneManager.sceneCountInBuildSettings)
+        {
+            currentLevel = 1;
+        }
         SaveGame(currentLevel);
     }
 
