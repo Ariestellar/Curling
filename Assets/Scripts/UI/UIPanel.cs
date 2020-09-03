@@ -31,13 +31,12 @@ public class UIPanel : MonoBehaviour
         } else if (color == Color.grey)
         {
             _lifeImages[countLife + 1].sprite = _lifeSprite[1];
-        }
-               
+        }               
     }
 
     public void ResetLifePanel()
     {    
-        for (int i = 1; i < _lifeImages.Length; i++)
+        for (int i = 1; i < 5; i++)
         {
             _lifeImages[i].sprite = _lifeSprite[0];
         }
