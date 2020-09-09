@@ -67,7 +67,7 @@ public class GameSessionCurrentLevel: MonoBehaviour
 
     public void ContinueLevel()
     {
-        if (StateLevel == StateGame.Victory && SceneManager.sceneCountInBuildSettings > DataGame.currentLevel)
+        if (StateLevel == StateGame.Victory)
         {            
             DataGame.LevelUp();
             SceneTransition.SwitchToScene("Level" + DataGame.currentLevel);

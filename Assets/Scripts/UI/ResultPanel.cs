@@ -6,10 +6,13 @@ using UnityEngine.UI;
 
 public class ResultPanel : MonoBehaviour
 {
-    [SerializeField] private Image _imageResultPanel;
+    [SerializeField] private Image _image;
+    [SerializeField] private Image _button;
     [SerializeField] private Sprite _imageDefeat;
+    [SerializeField] private Sprite _buttonImageDefeat;
     [SerializeField] private Sprite _imageVictory;
-    [SerializeField] private Text _resultText;
+    [SerializeField] private Sprite _buttonimageVictory;
+    //[SerializeField] private Text _resultText;
 
     public void Show(StateGame stateGame)
     {
@@ -17,18 +20,20 @@ public class ResultPanel : MonoBehaviour
         {
             if (stateGame == StateGame.Victory)
             {
-                _imageResultPanel.sprite = _imageVictory;
-                _resultText.text = "Victory";
+                _image.sprite = _imageVictory;
+                _button.sprite = _buttonimageVictory;
+                //_resultText.text = "Victory";
             }
             else if (stateGame == StateGame.Defeat)
             {
-                _imageResultPanel.sprite = _imageDefeat;
-                _resultText.text = "Defeat";
+                _image.sprite = _imageDefeat;
+                _button.sprite = _buttonImageDefeat;
+                //_resultText.text = "Defeat";
             }
         }
         else
         {
-            _resultText.text = "End demo :(";
+            //_resultText.text = "End demo :(";
         }
     }
 }

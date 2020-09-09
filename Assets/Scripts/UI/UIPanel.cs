@@ -8,6 +8,7 @@ public class UIPanel : MonoBehaviour
 {
     [SerializeField] private GameSessionCurrentLevel _gameSessionCurrentLevel;
     [SerializeField] private GameObject _lifePanel;    
+    [SerializeField] private Sprite[] _lifeSprite;    
     [SerializeField] private ResultPanel _resultPanel;     
     [SerializeField] private TouchHandler _touchHandler;
     [SerializeField] private GameObject _brifing;
@@ -24,14 +25,20 @@ public class UIPanel : MonoBehaviour
 
     public void SetColorLifePanel(int countLife, Color color)
     {
-        _lifeImages[countLife + 1].color = color;        
+        if (color == Color.green)
+        {
+            _lifeImages[countLife + 1].sprite = _lifeSprite[2];
+        } else if (color == Color.grey)
+        {
+            _lifeImages[countLife + 1].sprite = _lifeSprite[1];
+        }               
     }
 
     public void ResetLifePanel()
     {    
-        for (int i = 1; i < _lifeImages.Length; i++)
+        for (int i = 1; i < 5; i++)
         {
-            _lifeImages[i].color = Color.white;
+            _lifeImages[i].sprite = _lifeSprite[0];
         }
     }
 
