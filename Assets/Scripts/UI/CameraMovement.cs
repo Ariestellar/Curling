@@ -13,7 +13,7 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private int _speedRotateGo;
     [SerializeField] private int _speedRotateReturn;
 
-    private float _smooth = 5.0f;
+    private float _smooth = 2.0f;
     private Vector3 _offset = new Vector3(0, 15, -10);
 
     private void FixedUpdate()
