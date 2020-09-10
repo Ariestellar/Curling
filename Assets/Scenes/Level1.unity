@@ -1271,6 +1271,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4561835671598667178, guid: 15b71940135f67042914ce2274932fdc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8080740484360831322, guid: 15b71940135f67042914ce2274932fdc,
         type: 3}
       propertyPath: _audioManager
@@ -1390,6 +1395,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920500156808763231, guid: 15b71940135f67042914ce2274932fdc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15b71940135f67042914ce2274932fdc, type: 3}
