@@ -533,33 +533,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8024371166434542738, guid: 15b71940135f67042914ce2274932fdc,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -5.4000244
-      objectReference: {fileID: 0}
-    - target: {fileID: 8024371166434542738, guid: 15b71940135f67042914ce2274932fdc,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 294.09998
-      objectReference: {fileID: 0}
     - target: {fileID: 8080740484360831322, guid: 15b71940135f67042914ce2274932fdc,
         type: 3}
       propertyPath: _audioManager
       value: 
       objectReference: {fileID: 1918675089}
-    - target: {fileID: 8920500155963988685, guid: 15b71940135f67042914ce2274932fdc,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f45964223ed371b4182a0724ed789ba1,
-        type: 3}
-    - target: {fileID: 8920500156111901326, guid: 15b71940135f67042914ce2274932fdc,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f45964223ed371b4182a0724ed789ba1,
-        type: 3}
     - target: {fileID: 8920500156397079138, guid: 15b71940135f67042914ce2274932fdc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -670,41 +648,11 @@ PrefabInstance:
       propertyPath: _gameSessionCurrentLevel
       value: 
       objectReference: {fileID: 1399223922}
-    - target: {fileID: 8920500156397079139, guid: 15b71940135f67042914ce2274932fdc,
-        type: 3}
-      propertyPath: _lifeSprite.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: f45964223ed371b4182a0724ed789ba1,
-        type: 3}
-    - target: {fileID: 8920500156397079139, guid: 15b71940135f67042914ce2274932fdc,
-        type: 3}
-      propertyPath: _lifeSprite.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: 7644ba4ae8a117f4eadd3b2866185372,
-        type: 3}
-    - target: {fileID: 8920500156397079139, guid: 15b71940135f67042914ce2274932fdc,
-        type: 3}
-      propertyPath: _lifeSprite.Array.data[2]
-      value: 
-      objectReference: {fileID: 21300000, guid: 92809a21126102b4680f037b72e7e516,
-        type: 3}
     - target: {fileID: 8920500156397079142, guid: 15b71940135f67042914ce2274932fdc,
         type: 3}
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 8920500156626453910, guid: 15b71940135f67042914ce2274932fdc,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f45964223ed371b4182a0724ed789ba1,
-        type: 3}
-    - target: {fileID: 8920500157785065906, guid: 15b71940135f67042914ce2274932fdc,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f45964223ed371b4182a0724ed789ba1,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15b71940135f67042914ce2274932fdc, type: 3}
 --- !u!114 &1828096112 stripped
