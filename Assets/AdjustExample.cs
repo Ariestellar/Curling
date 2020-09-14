@@ -14,7 +14,7 @@ public class AdjustExample : MonoBehaviour
 
 #if UNITY_IOS
         /* Mandatory - set your iOS app token here */
-        InitAdjust("k12z0zmrvv28");
+        InitAdjust("ypg8wjzz708w");
 #elif UNITY_ANDROID
         /* Mandatory - set your Android app token here */
         InitAdjust("");
