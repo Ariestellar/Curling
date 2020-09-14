@@ -21,6 +21,10 @@ public class AdjustExample : MonoBehaviour
 #endif
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     private void InitAdjust(string adjustAppToken)
     {
         var adjustConfig = new AdjustConfig(
